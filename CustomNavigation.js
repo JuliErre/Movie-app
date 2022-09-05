@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator();
 
 const HomeNavigatior = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="HomeScreen">
         <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown: false}} />
         <Stack.Screen name="Detail" component={DetailScreen} options={{headerShown: false}} />
         <Stack.Screen name="Trailer" component={TrailerScreen} options={{headerShown: false}} />
@@ -23,7 +23,7 @@ export {HomeNavigatior}
 
 const SearchNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="SearchScreen">
         <Stack.Screen name="SearchScreen" component={SearchScreen} options={{headerShown: false}} />
         <Stack.Screen name="Detail" component={DetailScreen} options={{headerShown: false}} />
 
@@ -34,7 +34,7 @@ export {SearchNavigator}
 
 const WatchListNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="WatchListScreen">
         <Stack.Screen name="WatchListScreen" component={WatchListScreen} options={{headerShown: false}} />
         <Stack.Screen name="Detail" component={DetailScreen} options={{headerShown: false}} />
 

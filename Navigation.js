@@ -4,9 +4,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {HomeNavigatior,SearchNavigator,WatchListNavigator} from './CustomNavigation';
 import { FontAwesome } from '@expo/vector-icons';
 
-
-
-
 const Tab = createBottomTabNavigator ();
 
 const Navigation = () => {

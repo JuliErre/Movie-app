@@ -5,7 +5,7 @@ import {
     FlatList,
     ScrollView,
     TouchableOpacity,
-    Button,
+    ToastAndroid
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -49,9 +49,11 @@ const DetailContainer = ({ movieID, media, navigation }) => {
     const handleOnPress = (action) => {
         if (action === "add") {
             dispatch(addToList({ ...movie, "media": media }))
+            ToastAndroid.show("Added to watch list", ToastAndroid.SHORT);
         }
         if (action === "delete") {
             dispatch(deleteFromList(movie.id))
+            ToastAndroid.show("Deleted from watch list", ToastAndroid.SHORT);
         }
 
     }
@@ -122,18 +124,22 @@ const DetailContainer = ({ movieID, media, navigation }) => {
                             horizontal
                             showsHorizontalScrollIndicator={false}
                             renderItem={({ item }) => (
-                                <View
-                                    className="flex flex-col items-center justify-center  mr-3"
-                                    key={item.id}
-                                >
-                                    <Image
-                                        className="w-20 h-20 rounded-lg "
-                                        source={{ uri: `${baseUrlImages}${item.profile_path}` }}
-                                    />
-                                    <Text className="text-gray-400 text-xs mt-1">
-                                        {item.name}
-                                    </Text>
-                                </View>
+                                <>
+                                    {item.profile_path && (
+                                        <View
+                                            className="flex flex-col items-center justify-center  mr-3"
+                                            key={item.id}
+                                        >
+                                            <Image
+                                                className="w-20 h-20 rounded-lg "
+                                                source={{ uri: `${baseUrlImages}${item.profile_path}` }}
+                                            />
+                                            <Text className="text-gray-400 text-xs mt-1">
+                                                {item.name}
+                                            </Text>
+                                        </View>
+                                    )}
+                                </>
                             )}
                         />
                     </View>
