@@ -35,7 +35,7 @@ const HomeScreen = ({navigation}) => {
         {/* <StatusBar barStyle="light-content" backgroundColor="black" /> */}
         <View className=" relative flex ">
           <Image
-            source={{ uri: `${baseUrlImages}${data?.[8]?.backdrop_path}` }}
+            source={{ uri: `${baseUrlImages}${data?.[1]?.backdrop_path}` }}
             style={{ width: "100%", height: 400 }}
             className=" abosolute"
           />
@@ -46,7 +46,7 @@ const HomeScreen = ({navigation}) => {
           <View className="absolute top-32 flex flex-col w-full items-start justify-between p-4">
             <View className="flex flex-row items-center justify-start w-full gap-10">
               <Text className="text-4xl font-semibold text-white">
-                {data?.[8]?.title}
+                {data?.[1]?.title}
               </Text>
               <MaterialIcons
                 name="play-circle-fill"
@@ -56,7 +56,7 @@ const HomeScreen = ({navigation}) => {
             </View>
             <View className="flex flex-col items-start justify-start w-full ">
               <Text className="text-sm text-gray-400">
-                {data?.[8]?.overview.slice(0, 180).length == 180 && data?.[8]?.overview.slice(0, 180) + "..." || data?.[8]?.overview.slice(0, 180)}
+                {data?.[1]?.overview.slice(0, 180).length == 180 && data?.[1]?.overview.slice(0, 110) + "..." || data?.[1]?.overview.slice(0, 180)}
               </Text>
 
               <View className="flex flex-row items-center justify-end gap-10 w-full ">
@@ -64,7 +64,7 @@ const HomeScreen = ({navigation}) => {
                   {data?.[8]?.vote_average}/10
                 </Text> */}
                 <Text className="text-sm text-gray-400">
-                  {data?.[8]?.release_date}
+                {data?.[1]?.release_date}
                 </Text>
               </View>
             </View>
@@ -82,10 +82,22 @@ const HomeScreen = ({navigation}) => {
           isFirstRow
         />
         <View className="flex flex-col pt-6 pb-6">
+        <Row
+            title="Popular TV Shows"
+            category={ApiUrls.popularsTV}
+            baseUrl={ApiUrls.baseUrl}
+            isTV
+          />
           <Row
             title="Comedy"
             category={ApiUrls.comedyMovies}
             baseUrl={ApiUrls.baseUrl}
+          />
+           <Row
+            title="Top Rated TV Shows"
+            category={ApiUrls.topRatedTV}
+            baseUrl={ApiUrls.baseUrl}
+            isTV 
           />
           <Row
             title="Action"
@@ -112,6 +124,9 @@ const HomeScreen = ({navigation}) => {
             category={ApiUrls.horrorMovies}
             baseUrl={ApiUrls.baseUrl}
           />
+        
+         
+       
         </View>
       </ScrollView>
     </View>

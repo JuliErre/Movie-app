@@ -4,7 +4,7 @@ import MoviesList from './MoviesList'
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 
-const Row = ({title,category,baseUrl,isFirstRow}) => {
+const Row = ({title,category,baseUrl,isFirstRow, isTV}) => {
     const navigation = useNavigation();
     const[data,setData] = useState([]);
 
@@ -17,11 +17,11 @@ const Row = ({title,category,baseUrl,isFirstRow}) => {
   
 
   return (
-    <View className={`flex flex-col items-start justify-start gap-5 pt-8 px-8 ${isFirstRow &&'absolute top-64'}`}>
+    <View className={`flex flex-col items-start justify-start gap-5 pt-8 px-8 ${isFirstRow &&'absolute top-64 ml-[0.3px]'}`}>
 
       <Text className="text-white text-2xl font-bold " >{title}</Text>
     
-     <MoviesList data = {data}/>
+     <MoviesList data = {data} isTV={isTV}/>
       
       </View>
   )

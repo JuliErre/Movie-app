@@ -5,10 +5,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
 import Navigation from "./Navigation";
+import { Provider } from "react-redux";
+import store from "./app/store";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (
+    <Provider store={store}>
     <NavigationContainer>
       <TailwindProvider>
         {/* <Stack.Navigator>
@@ -18,6 +21,7 @@ export default function App() {
         <Navigation/>
       </TailwindProvider>
     </NavigationContainer>
+    </Provider>
   );
 }
 

@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {HomeNavigatior,SearchNavigator} from './CustomNavigation';
+import {HomeNavigatior,SearchNavigator,WatchListNavigator} from './CustomNavigation';
 import { FontAwesome } from '@expo/vector-icons';
 
 
@@ -36,8 +36,18 @@ const Navigation = () => {
         ),
         
         }} />
+
+      <Tab.Screen name="WatchList" component={WatchListNavigator} options={{
+        headerShown: false,
+        tabBarIcon: ({ color, size }) => (
+          <FontAwesome name="list-ul" size={size} color={color} />
+        ),
+        
+        }} />
+
     </Tab.Navigator>
   )
 }
+
 
 export default Navigation

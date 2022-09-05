@@ -2,7 +2,7 @@ import { View, Text,FlatList } from "react-native";
 import React from "react";
 import MoviePoster from "./MoviePoster";
 
-const MoviesList = ({data,isVertical}) => {
+const MoviesList = ({data,isVertical,isTV}) => {
     return (
         <FlatList
             data={data}
@@ -12,7 +12,7 @@ const MoviesList = ({data,isVertical}) => {
             keyExtractor={item => "-" + item.id}
             showsHorizontalScrollIndicator={false}
             showsVerticalScrollIndicator={false}
-            renderItem={({ item: movie }) =>  <MoviePoster movie={movie} />}
+            renderItem={({ item: movie }) =>  <MoviePoster movie={movie} isTV = {isTV} />}
            
            
         />

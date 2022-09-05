@@ -3,10 +3,10 @@ import React from 'react'
 import DetailContainer from '../components/DetailContainer';
 
 const DetailScreen = ({route, navigation}) => {
-    const {movie} = route.params;
+    const {movie, media} = route.params;
   return (
     <View className="w-full min-h-full h-full bg-gray-800">
-      <DetailContainer movieID={movie} navigation = {navigation}/>
+      <DetailContainer movieID={movie} navigation = {navigation} media={media}/>
     </View>
   )
 }
