@@ -6,6 +6,9 @@ import DetailScreen from './screens/DetailScreen';
 import SearchScreen from './screens/SearchScreen';
 import TrailerScreen from './screens/TrailerScreen';
 import WatchListScreen from './screens/WatchListScreen';
+import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -44,3 +47,14 @@ const WatchListNavigator = () => {
 }
 
 export {WatchListNavigator}
+
+const LoginNavigator = () => {
+  return (
+    <Stack.Navigator initialRouteName="LoginScreen">
+        <Stack.Screen name="LoginScreen" component={LoginScreen} options={{headerShown: false}} />
+        <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown: false}} />
+    </Stack.Navigator>
+  )
+}
+
+export {LoginNavigator}

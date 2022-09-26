@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {HomeNavigatior,SearchNavigator,WatchListNavigator} from './CustomNavigation';
+import {HomeNavigatior,LoginNavigator,SearchNavigator,WatchListNavigator} from './CustomNavigation';
 import { FontAwesome } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator ();
@@ -42,6 +42,13 @@ const Navigation = () => {
         
         }} />
 
+      <Tab.Screen name="Login" component={LoginNavigator} options={{
+        headerShown: false,
+        tabBarIcon: ({ color, size }) => (
+          <FontAwesome name="user" size={size} color={color} />
+        ),
+        
+        }} />
     </Tab.Navigator>
   )
 }
