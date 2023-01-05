@@ -17,4 +17,3 @@ const wacthListSlice = createSlice({
 
 export const {addToList, deleteFromList} = wacthListSlice.actions;
 export default wacthListSlice.reducer
- 

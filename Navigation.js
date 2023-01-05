@@ -1,12 +1,16 @@
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {HomeNavigatior,LoginNavigator,SearchNavigator,WatchListNavigator} from './CustomNavigation';
 import { FontAwesome } from '@expo/vector-icons';
+import { useSelector } from 'react-redux';
 
 const Tab = createBottomTabNavigator ();
 
 const Navigation = () => {
+  const user = useSelector(state => state.userInfo)
+  const{photoURL} = user.userInfo
+  console.log("je"+photoURL)
   return (
     <Tab.Navigator 
     screenOptions={{
@@ -45,7 +49,13 @@ const Navigation = () => {
       <Tab.Screen name="Login" component={LoginNavigator} options={{
         headerShown: false,
         tabBarIcon: ({ color, size }) => (
-          <FontAwesome name="user" size={size} color={color} />
+          <View className="flex" style={{ display:"flex" ,border: "solid #fffff"}}> 
+            { 
+              photoURL ? <Image source={{uri: photoURL}} style={{height:30, width:30, borderRadius:50}}/> :
+
+              <FontAwesome name="user" size={size} color={color} />
+            }
+          </View>
         ),
         
         }} />

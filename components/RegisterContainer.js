@@ -2,13 +2,13 @@ import { View, Text,TouchableOpacity, Alert } from 'react-native'
 import React from 'react'
 import { firebaseConfig } from '../firebase-config'
 
-import {getAuth, createUserWithEmailAndPassword} from "@firebase/auth";
+import {getAuth, createUserWithEmailAndPassword,updateProfile} from "@firebase/auth";
 import {initializeApp} from '@firebase/app'
 import { useNavigation } from '@react-navigation/native';
 
 
 
-const RegisterContainer = ({email,password}) => {
+const RegisterContainer = ({email,password,name,surname}) => {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     
@@ -17,13 +17,20 @@ const RegisterContainer = ({email,password}) => {
     const handleCreateAccount = () => {
         createUserWithEmailAndPassword(auth,email,password)
         .then((userCredential) => {
+            
             // Signed in 
-            const user = userCredential.user;
+            // const user = userCredential.user;
+            const {user} = userCredential;
+
             console.log(user)
-            navigation.navigate("LoginScreen")
-            // ...
+             updateProfile(user,{ displayName: `${name} ${surname}`, photoURL:"https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/FE49954B252C628EC809C68832E9137D5926C2085D58A6510F8BBA12933F7B7E/scale?width=600&aspectRatio=1.00&format=png" });
+         
+            // ..6
         }
         )
+        .then(() => {
+            navigation.navigate("LoginScreen");
+        })
         .catch((error) => {
             Alert.alert("Error",error.message)
         })

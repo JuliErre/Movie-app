@@ -1,34 +1,63 @@
-import { View, Text,TouchableOpacity,Alert } from 'react-native'
-import React from 'react'
-import { firebaseConfig } from '../firebase-config'
+import { View, Text, TouchableOpacity, Alert, ActivityIndicator } from "react-native";
+import React,{useState} from "react";
+import { firebaseConfig } from "../firebase-config";
 
-import {getAuth, signInWithEmailAndPassword} from "@firebase/auth";
-import {initializeApp} from '@firebase/app'
-import { useNavigation } from '@react-navigation/native';
+import { getAuth, signInWithEmailAndPassword } from "@firebase/auth";
+import { initializeApp } from "@firebase/app";
+import { useNavigation } from "@react-navigation/native";
 
-const LoginContainer = ({email,password}) => {
+import { useDispatch} from "react-redux";
+import {
+    setAccesToken,
+    setUserInfo,
+    setUid,
+} from "../features/userInfo/UserInfoSlice";
+const LoginContainer = ({ email, password }) => {
     const navigation = useNavigation();
+    const dispatch = useDispatch();
+    
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-
+    
+    const [loading, setLoading]= useState(false);
+    
+    
     const handleSignIn = () => {
-        signInWithEmailAndPassword(auth,email,password)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            console.log(user)
-           
-            // ...
-        })
-        .catch((error) => {
-            Alert.alert("Error",error.message)
-        })
-    }
+        setLoading(true);
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in
+                const { user } = userCredential;
+                console.log(user);
 
-     return (
+                dispatch(setAccesToken(user.accessToken));
+                dispatch(setUserInfo(user.providerData[0]));
+                dispatch(setUid(user.uid));
+               
+                // ...
+            })
+            .then(() => {
+                navigation.navigate("Profile");
+                navigation.reset({
+                    index: 0,
+                    routes: [{ name: "Profile" }],
+                });
+            })
+            .catch((error) => {
+                Alert.alert("Error", error.message);
+            })
+            .finally(() => {
+                setLoading(false);
+            })
+        };
+
+    return (
         <View className="w-[45%] mt-4">
-            <TouchableOpacity onPress={() => handleSignIn()} className="bg-purple-800 flex items-center justify-center p-3  rounded-xl">
-                <Text className="text-white font-bold text-base">Login</Text>
+            <TouchableOpacity
+                onPress={() => handleSignIn()}
+                className="bg-purple-800 flex items-center justify-center p-3  rounded-xl"
+            >
+                <Text className="text-white font-bold text-base">{loading? <ActivityIndicator size="small" color="#d1cccc"/>:"Login"}</Text>
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => navigation.navigate("Register")}

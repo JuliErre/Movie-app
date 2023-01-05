@@ -9,8 +9,10 @@ import RegisterContainer from "./RegisterContainer";
 const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
+    const [phone, setPhone] = useState('');
     
-
 
    const navigation =  useNavigation()
    
@@ -37,8 +39,25 @@ const Register = () => {
                 onChangeText={(text) => setPassword(text)}
 
             />
+            <TextInput
+                className="bg-black text-white rounded-xl w-64 p-3 mt-2"
+                placeholder="Name"
+                placeholderTextColor="#555555"
+                value={name}
+                onChangeText={(text) => setName(text)}
 
-            <RegisterContainer email={email} password={password} />
+            />
+
+<TextInput
+                className="bg-black text-white rounded-xl w-64 p-3 mt-2"
+                placeholder="Surname"
+                placeholderTextColor="#555555"
+                value={surname}
+                onChangeText={(text) => setSurname(text)}
+
+            />
+
+            <RegisterContainer email={email} password={password} name={name} surname={surname} />
 
         </View>
     

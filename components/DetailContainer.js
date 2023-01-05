@@ -127,16 +127,18 @@ const DetailContainer = ({ movieID, media, navigation }) => {
                                 <>
                                     {item.profile_path && (
                                         <View
-                                            className="flex flex-col items-center justify-center  mr-3"
+                                            className="flex flex-col items-center justify-center  mr-3 max-w-full"
                                             key={item.id}
                                         >
                                             <Image
                                                 className="w-20 h-20 rounded-lg "
                                                 source={{ uri: `${baseUrlImages}${item.profile_path}` }}
                                             />
-                                            <Text className="text-gray-400 text-xs mt-1">
+                                        
+                                            <Text className="text-gray-400 text-xs mt-1 w-20" numberOfLines={1} >
                                                 {item.name}
                                             </Text>
+                                            
                                         </View>
                                     )}
                                 </>
