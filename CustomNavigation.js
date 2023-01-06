@@ -9,6 +9,7 @@ import WatchListScreen from './screens/WatchListScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import ProfileImagePickerScreen from './screens/ProfileImagePickerScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -55,6 +56,7 @@ const LoginNavigator = () => {
         <Stack.Screen name="LoginScreen" component={LoginScreen} options={{headerShown: false}} />
         <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown: false}} />
         <Stack.Screen name="Profile" component={ProfileScreen} options={{headerShown: false}} />
+        <Stack.Screen name="ProfileImagePicker" component={ProfileImagePickerScreen} options={{headerShown: false}} />
     </Stack.Navigator>
   )
 }

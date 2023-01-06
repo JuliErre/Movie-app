@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import {
     deleteUserInfo,
 } from "../features/userInfo/UserInfoSlice";
+import { getAuth, signOut } from "firebase/auth";
 import { useNavigation } from '@react-navigation/native';
 const LogoutBtn = () => {
     //delete user info from global state
@@ -14,11 +15,21 @@ const LogoutBtn = () => {
 
     const handleLogout = () => {
         dispatch(deleteUserInfo());
+
+        const auth = getAuth();
+        signOut(auth).then(() => {
+            // Sign-out successful.
+            console.log("sign out successful")
+        }).catch((error) => {
+            // An error happened.
+            console.log("sign out error")
+        });
+        
         navigation.reset({
             index: 0,
             routes: [{ name: "LoginScreen" }],
         });
-        navigation.navigate("LoginScreen");
+        navigation.navigate("LoginScreen")
     }
   return (
     <View className="w-[45%] mt-4 flex justify-center items-center">

@@ -7,29 +7,32 @@ import HomeScreen from "./screens/HomeScreen";
 import Navigation from "./Navigation";
 import { Provider } from "react-redux";
 import store from "./app/store";
+import { RootSiblingParent } from "react-native-root-siblings";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
-  return (
-    <Provider store={store}>
-    <NavigationContainer>
-      <TailwindProvider>
-        {/* <Stack.Navigator>
+    return (
+        <RootSiblingParent>
+            <Provider store={store}>
+                <NavigationContainer>
+                    <TailwindProvider>
+                        {/* <Stack.Navigator>
           <Stack.Screen name="Home" component={HomeScreen} />
         </Stack.Navigator> */}
-        {/* <StatusBar style="dark"/> */}
-        <Navigation/>
-      </TailwindProvider>
-    </NavigationContainer>
-    </Provider>
-  );
+                        {/* <StatusBar style="dark"/> */}
+                        <Navigation />
+                    </TailwindProvider>
+                </NavigationContainer>
+            </Provider>
+        </RootSiblingParent>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
+    },
 });

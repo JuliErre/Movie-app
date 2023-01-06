@@ -17,6 +17,9 @@ const UserInfoSlice =  createSlice({
         setUid:(state, action) => {
             state.uid = action.payload;
         },
+        setProfileImage:(state, action) => {
+            state.userInfo.photoURL = action.payload;
+        },
         deleteUserInfo:(state, action) => {
             state.userInfo = {};
             state.accesToken = "";
@@ -28,5 +31,5 @@ const UserInfoSlice =  createSlice({
 
 })
 
-export const {setUserInfo, setAccesToken, setUid,deleteUserInfo} = UserInfoSlice.actions;
+export const {setUserInfo, setAccesToken, setUid,setProfileImage,deleteUserInfo} = UserInfoSlice.actions;
 export default UserInfoSlice.reducer
