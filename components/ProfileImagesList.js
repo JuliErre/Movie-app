@@ -43,22 +43,22 @@ const ProfileImage = ({ image }) => {
                 // An error occurred
                 console.log(error);
             });
-            navigation.reset({
-                index: 0,
-                routes: [{ name: "Profile" }],
+        navigation.reset({
+            index: 0,
+            routes: [{ name: "Profile" }],
+        });
+        navigation.navigate("Profile");
+        setTimeout(() => {
+            Toast.show("Profile image updated", {
+                duration: Toast.durations.SHORT,
+                position: Toast.positions.BOTTOM,
+                shadow: true,
+                animation: true,
+                hideOnPress: true,
+                delay: 0,
+                backgroundColor: "green",
             });
-            navigation.navigate("Profile");
-            setTimeout(() => {
-                Toast.show("Profile image updated", {
-                    duration: Toast.durations.SHORT,
-                    position: Toast.positions.BOTTOM,
-                    shadow: true,
-                    animation: true,
-                    hideOnPress: true,
-                    delay: 0,
-                    backgroundColor: "green",
-                });
-            }, 1000);
+        }, 1000);
     };
 
     return (

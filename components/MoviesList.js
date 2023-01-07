@@ -1,20 +1,20 @@
-import { View, Text,FlatList } from "react-native";
+import { View, Text, FlatList } from "react-native";
 import React from "react";
 import MoviePoster from "./MoviePoster";
 
-const MoviesList = ({data,isVertical,isTV}) => {
+const MoviesList = ({ data, isVertical, isTV }) => {
     return (
         <FlatList
             data={data}
-            horizontal={!isVertical?true:false}
-            numColumns={isVertical?3:1}
-            key={'_'}
-            keyExtractor={item => "-" + item.id}
+            horizontal={!isVertical ? true : false}
+            numColumns={isVertical ? 3 : 1}
+            key={"_"}
+            keyExtractor={(item) => "-" + item.id}
             showsHorizontalScrollIndicator={false}
             showsVerticalScrollIndicator={false}
-            renderItem={({ item: movie }) =>  <MoviePoster movie={movie} isTV = {isTV} />}
-           
-           
+            renderItem={({ item: movie }) => (
+                <MoviePoster movie={movie} isTV={isTV} />
+            )}
         />
     );
 };

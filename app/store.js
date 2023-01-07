@@ -4,10 +4,9 @@ import UserInfoReducer from "../features/userInfo/UserInfoSlice";
 
 const store = configureStore({
     reducer: {
-  watchList : watchListReducer,
-  userInfo: UserInfoReducer,
+        watchList: watchListReducer,
+        userInfo: UserInfoReducer,
     },
 });
 
 export default store;
-

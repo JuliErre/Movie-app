@@ -1,15 +1,24 @@
-import { View, Text, Image } from "react-native";
-import React, { useState } from "react";
-import Carousel, { Pagination } from "react-native-snap-carousel";
+import { View, Text, Image, TouchableOpacity } from "react-native";
+import React from "react";
+import Carousel from "react-native-snap-carousel";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const CarouselPosters = ({ movies, width, height }) => {
-    const [activeSlide, setActiveSlide] = useState(0);
+    const navigation = useNavigation();
 
     const renderItem = ({ item }) => {
         return (
-            <View className="flex relative">
+            <TouchableOpacity
+                onPress={() =>
+                    navigation.navigate("Detail", {
+                        movie: `${item.id}`,
+                        media: "movie",
+                    })
+                }
+                className="flex relative"
+            >
                 <Image
                     className="object-cover object-center"
                     source={{
@@ -36,7 +45,10 @@ const CarouselPosters = ({ movies, width, height }) => {
                         />
                     </View>
                     <View className="flex flex-col items-start justify-start w-full pb-4">
-                        <Text className="text-sm text-gray-400" numberOfLines={3}>
+                        <Text
+                            className="text-sm text-gray-400"
+                            numberOfLines={3}
+                        >
                             {item.overview}
                         </Text>
 
@@ -47,7 +59,7 @@ const CarouselPosters = ({ movies, width, height }) => {
                         </View>
                     </View>
                 </View>
-            </View>
+            </TouchableOpacity>
         );
     };
 
@@ -63,14 +75,7 @@ const CarouselPosters = ({ movies, width, height }) => {
                 autoplay={true}
                 autoplayDelay={1000}
                 autoplayInterval={5000}
-                onSnapToItem={(index) => setActiveSlide(index)}
             />
-            {/* <Pagination
-            activeDotIndex={activeSlide}
-            dotsLength={movies?.length}
-            containerStyle={{paddingVertical:0,position:'absolute',top:100, color:'white'}} 
-            dotStyle={{width:10,height:10,borderRadius:5,backgroundColor:'white'}}
-            /> */}
         </>
     );
 };

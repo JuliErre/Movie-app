@@ -1,4 +1,4 @@
-import { View, Text, TextInput} from "react-native";
+import { View, Text, TextInput } from "react-native";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MoviesList from "./MoviesList";
@@ -29,7 +29,10 @@ const SearchContainer = ({ navigation }) => {
     }, [search]);
 
     return (
-        <View  className="flex  justify-start items-center w-full pt-5" style={{marginTop: Constants.statusBarHeight}}>
+        <View
+            className="flex  justify-start items-center w-full pt-5"
+            style={{ marginTop: Constants.statusBarHeight }}
+        >
             <View className="flex relative justify-center items-center">
                 <TextInput
                     placeholderTextColor="#555555"
@@ -44,10 +47,11 @@ const SearchContainer = ({ navigation }) => {
             <View className="flex flex-col justify-center items-center wrapped max-w-44 w-50 mt-4">
                 {movies.length > 0 && search.length > 0 ? (
                     <MoviesList data={movies} isVertical />
+                ) : search.length === 0 ? (
+                    <Text className="text-white text-center text-2xl">
+                        Search a Movie or TV show
+                    </Text>
                 ) : (
-                    search.length === 0 ?
-                    <Text className="text-white text-center text-2xl">Search a Movie or TV show</Text>
-                    :
                     <Text className="text-white text-2xl">No movies found</Text>
                 )}
             </View>
