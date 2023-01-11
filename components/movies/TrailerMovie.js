@@ -1,7 +1,7 @@
 import { View,Dimensions } from "react-native";
 import React, { useEffect, useState,useCallback } from "react";
 import axios from "axios";
-import ApiUrls from "../ApiUrls";
+import ApiUrls from "../../ApiUrls";
 import YoutubePlayer from "react-native-youtube-iframe";
 
 const TrailerMovie = ({ movieID }) => {

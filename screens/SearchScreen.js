@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import SearchContainer from '../components/SearchContainer'
+import SearchContainer from '../components/search/SearchContainer'
 
 const SearchScreen = () => {
   return (

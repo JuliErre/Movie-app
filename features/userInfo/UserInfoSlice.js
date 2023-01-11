@@ -22,8 +22,8 @@ const UserInfoSlice = createSlice({
         },
         deleteUserInfo: (state, action) => {
             state.userInfo = {};
-            state.accesToken = "";
-            state.uid = "";
+            state.accesToken = null;
+            state.uid = null;
         },
     },
 });

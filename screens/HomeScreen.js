@@ -1,110 +1,11 @@
-import {
-    View,
-    Text,
-    SafeAreaView,
-    Image,
-    StatusBar,
-    ScrollView,
-    Dimensions,
-} from "react-native";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { LinearGradient } from "expo-linear-gradient";
-import Row from "../components/Row";
-import ApiUrls from "../ApiUrls";
-import { MaterialIcons } from "@expo/vector-icons";
-import CarouselPosters from "../components/CarouselPosters";
+import { View, Text } from 'react-native'
+import React from 'react'
+import Home from '../components/home/Home'
 
-// import { FlatList } from 'react-native-web';
+const HomeScreen = () => {
+  return (
+    <Home/>
+  )
+}
 
-const HomeScreen = ({ navigation }) => {
-    // const navigation = useNavigation();
-    const [data, setData] = useState();
-    const baseUrlImages = "https://image.tmdb.org/t/p/original";
-
-    const windowWidth = Dimensions.get("window").width;
-    const windowHeight = Dimensions.get("window").height;
-
-    useEffect(() => {
-        axios
-            .get(`${ApiUrls.baseUrl}${ApiUrls.popularsMovies}`)
-            .then((res) => setData(res.data.results))
-            .catch((err) => console.log(err));
-    }, []);
-
-    return (
-        <View>
-            <ScrollView className="bg-gray-900 flex flex-col gap-4 min-h-full">
-                <View className=" relative flex ">
-                    <ScrollView className="relative flex ">
-                        <CarouselPosters
-                            movies={data?.slice(0, 5)}
-                            width={windowWidth}
-                            height={500}
-                        />
-                    </ScrollView>
-                </View>
-
-                <Row
-                    title="Popular"
-                    category={ApiUrls.popularsMovies}
-                    baseUrl={ApiUrls.baseUrl}
-                    isFirstRow
-                />
-                <View className="flex flex-col pt-6 pb-6">
-                    <Row
-                        title="Popular TV Shows"
-                        category={ApiUrls.popularsTV}
-                        baseUrl={ApiUrls.baseUrl}
-                        isTV
-                    />
-                    <Row
-                        title="Comedy"
-                        category={ApiUrls.comedyMovies}
-                        baseUrl={ApiUrls.baseUrl}
-                    />
-                    <Row
-                        title="Top Rated TV Shows"
-                        category={ApiUrls.topRatedTV}
-                        baseUrl={ApiUrls.baseUrl}
-                        isTV
-                    />
-                    <Row
-                        title="Action"
-                        category={ApiUrls.actionMovies}
-                        baseUrl={ApiUrls.baseUrl}
-                    />
-                    <Row
-                        title="Romance"
-                        category={ApiUrls.romanceMovies}
-                        baseUrl={ApiUrls.baseUrl}
-                    />
-                    <Row
-                        title="Family"
-                        category={ApiUrls.familyMovies}
-                        baseUrl={ApiUrls.baseUrl}
-                    />
-                    <Row
-                        title="Drama"
-                        category={ApiUrls.dramaMovies}
-                        baseUrl={ApiUrls.baseUrl}
-                    />
-                    <Row
-                        title="Horror"
-                        category={ApiUrls.horrorMovies}
-                        baseUrl={ApiUrls.baseUrl}
-                    />
-                </View>
-            </ScrollView>
-        </View>
-    );
-};
-// const  style = StyleSheet.create ({
-//     AndroidSafeArea: {
-//     flex: 1,
-//     backgroundColor: "white",
-//     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
-//     }
-// })
-
-export default HomeScreen;
+export default HomeScreen

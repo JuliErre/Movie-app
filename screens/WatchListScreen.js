@@ -1,6 +1,6 @@
 import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
-import WatchListContainer from '../components/WatchListContainer'
+import WatchListContainer from '../components/watchlist/WatchListContainer'
 
 const WatchListScreen = () => {
   return (

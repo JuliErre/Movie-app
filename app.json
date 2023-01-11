@@ -11,7 +11,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-
+    "androidStatusBar": {
+      "translucent": true
+    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -30,6 +32,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a4105803-9b94-4b64-906f-1f2d94f348e5"
+      }
     }
   }
 }

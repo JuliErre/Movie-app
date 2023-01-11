@@ -1,7 +1,7 @@
 import { View, Text, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import ApiUrls from "../ApiUrls";
+import ApiUrls from "../../ApiUrls";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Localization from "expo-localization";
 

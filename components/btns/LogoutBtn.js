@@ -2,10 +2,10 @@ import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { Entypo } from "@expo/vector-icons";
 import { useDispatch } from "react-redux";
-import { deleteUserInfo } from "../features/userInfo/UserInfoSlice";
+import { deleteUserInfo } from "../../features/userInfo/UserInfoSlice";
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native";
-import { removeAllMovies } from "../features/watchList/WatchListSlice";
+import { removeAllMovies } from "../../features/watchList/WatchListSlice";
 const LogoutBtn = () => {
     const dispatch = useDispatch();
     const navigation = useNavigation();

@@ -1,7 +1,7 @@
 import { View, Text, FlatList, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { setProfileImage } from "../features/userInfo/UserInfoSlice";
+import { setProfileImage } from "../../features/userInfo/UserInfoSlice";
 import { getAuth, updateProfile } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native";
 import Toast from "react-native-root-toast";

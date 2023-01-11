@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import TrailerMovie from '../components/TrailerMovie'
+import TrailerMovie from '../components/movies/TrailerMovie'
 
 const TrailerScreen = ({route,navigation}) => {
     const { movieID } = route.params;

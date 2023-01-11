@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import DetailContainer from '../components/DetailContainer';
+import DetailContainer from '../components/detail/DetailContainer';
 
 const DetailScreen = ({route, navigation}) => {
     const {movie, media} = route.params;

@@ -1,7 +1,7 @@
 import { View, Text, TextInput } from "react-native";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import MoviesList from "./MoviesList";
+import MoviesList from "../movies/MoviesList";
 import { FontAwesome } from "@expo/vector-icons";
 import Constants from "expo-constants";
 

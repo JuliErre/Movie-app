@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import ProfileImagePicker from '../components/ProfileImagePicker'
+import ProfileImagePicker from '../components/profile/ProfileImagePicker'
 
 const ProfileImagePickerScreen = () => {
   return (

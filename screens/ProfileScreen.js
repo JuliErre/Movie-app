@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import Profile from '../components/Profile'
+import Profile from '../components/profile/Profile'
 
 const ProfileScreen = () => {
   return (

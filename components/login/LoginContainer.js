@@ -6,7 +6,7 @@ import {
     ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
-import { firebaseConfig } from "../firebase-config";
+import { firebaseConfig } from "../../firebase-config";
 
 import { getAuth, signInWithEmailAndPassword } from "@firebase/auth";
 import { initializeApp } from "@firebase/app";
@@ -17,9 +17,9 @@ import {
     setAccesToken,
     setUserInfo,
     setUid,
-} from "../features/userInfo/UserInfoSlice";
-import { getUserWatchList } from "../firebase/api";
-import { initWatchList } from "../features/watchList/WatchListSlice";
+} from "../../features/userInfo/UserInfoSlice";
+import { getUserWatchList } from "../../firebase/api";
+import { initWatchList } from "../../features/watchList/WatchListSlice";
 const LoginContainer = ({ email, password }) => {
     const navigation = useNavigation();
     const dispatch = useDispatch();

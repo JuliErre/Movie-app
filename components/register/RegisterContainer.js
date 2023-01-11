@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, Alert } from "react-native";
 import React from "react";
-import { firebaseConfig } from "../firebase-config";
+import { firebaseConfig } from "../../firebase-config";
 
 import {
     getAuth,
@@ -9,7 +9,7 @@ import {
 } from "@firebase/auth";
 import { initializeApp } from "@firebase/app";
 import { useNavigation } from "@react-navigation/native";
-import { addWatchList } from "../firebase/api";
+import { addWatchList } from "../../firebase/api";
 
 const RegisterContainer = ({ email, password, name, surname }) => {
     const app = initializeApp(firebaseConfig);

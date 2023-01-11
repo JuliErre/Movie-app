@@ -13,20 +13,15 @@ import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import TrailerMovie from "./TrailerMovie";
 import { useDispatch, useSelector } from "react-redux";
 import {
     addToList,
     deleteFromList,
-} from "../features/watchList/WatchListSlice";
-import WatchProviders from "./WatchProviders";
-import MoviesList from "./MoviesList";
+} from "../../features/watchList/WatchListSlice";
+import WatchProviders from "../movies/WatchProviders";
+import MoviesList from "../movies/MoviesList";
 import { Entypo } from "@expo/vector-icons";
-import {
-    addMovieToWatchList,
-    getWatchList,
-    removeMovieFromList,
-} from "../firebase/api";
+import { addMovieToWatchList, removeMovieFromList } from "../../firebase/api";
 
 const DetailContainer = ({ movieID, media, navigation }) => {
     const baseUrlImages = "https://image.tmdb.org/t/p/original";
@@ -87,20 +82,25 @@ const DetailContainer = ({ movieID, media, navigation }) => {
     const handleOnPress = (action) => {
         if (action === "add") {
             dispatch(addToList({ ...movie, media: media }));
-            addMovieToWatchList(userId, movie)
-                .then(() => {
-                    console.log("Movie added to watchlist");
-                })
-                .catch((err) => console.log(err));
+            if (userId) {
+                console.log("user ", userId);
+                addMovieToWatchList(userId, { ...movie, media: media })
+                    .then(() => {
+                        console.log("Movie added to watchlist");
+                    })
+                    .catch((err) => console.log(err));
+            }
             ToastAndroid.show("Added to watch list", ToastAndroid.SHORT);
         }
         if (action === "delete") {
             dispatch(deleteFromList(movie.id));
-            removeMovieFromList(userId, movie)
-                .then(() => {
-                    console.log("Movie removed from watchlist");
-                })
-                .catch((err) => console.log(err));
+            if (userId) {
+                removeMovieFromList(userId, { ...movie, media: media })
+                    .then(() => {
+                        console.log("Movie removed from watchlist");
+                    })
+                    .catch((err) => console.log(err));
+            }
 
             ToastAndroid.show("Deleted from watch list", ToastAndroid.SHORT);
         }
@@ -115,12 +115,10 @@ const DetailContainer = ({ movieID, media, navigation }) => {
                 />
                 <LinearGradient
                     colors={["transparent", "rgba(0,0,0,0.6)"]}
-                    className="absolute h-full  w-full z-0"
-                ></LinearGradient>
+                    className="absolute h-full  w-full z-0"></LinearGradient>
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
-                    className="absolute top-12 left-2 "
-                >
+                    className="absolute top-12 left-2 ">
                     <Ionicons name="arrow-back" size={35} color="white" />
                 </TouchableOpacity>
             </View>
@@ -129,8 +127,7 @@ const DetailContainer = ({ movieID, media, navigation }) => {
                 <View className="flex flex-row items-center justify-between w-full">
                     {watchList.find((item) => item.id === movie.id) ? (
                         <TouchableOpacity
-                            onPress={() => handleOnPress("delete")}
-                        >
+                            onPress={() => handleOnPress("delete")}>
                             <FontAwesome
                                 name="bookmark"
                                 size={25}
@@ -179,8 +176,7 @@ const DetailContainer = ({ movieID, media, navigation }) => {
                         Linking.openURL(
                             `https://www.youtube.com/watch?v=${trailer.key}`
                         )
-                    }
-                >
+                    }>
                     <Entypo name="controller-play" size={40} color="white" />
                     <Text className="text-xl font-bold text-gray-200 ml-2">
                         Play Trailer
@@ -202,8 +198,7 @@ const DetailContainer = ({ movieID, media, navigation }) => {
                                     {item.profile_path && (
                                         <View
                                             className="flex flex-col items-center justify-center  mr-3 max-w-full"
-                                            key={item.id}
-                                        >
+                                            key={item.id}>
                                             <Image
                                                 className="w-20 h-20 rounded-lg "
                                                 source={{
@@ -213,8 +208,7 @@ const DetailContainer = ({ movieID, media, navigation }) => {
 
                                             <Text
                                                 className="text-gray-400 text-xs mt-1 w-20"
-                                                numberOfLines={1}
-                                            >
+                                                numberOfLines={1}>
                                                 {item.name}
                                             </Text>
                                         </View>
