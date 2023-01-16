@@ -33,7 +33,6 @@ const ProfileImage = ({ image }) => {
 
     const handlePress = () => {
         dispatch(setProfileImage(image.URL));
-        console.log("user:----" + user.displayName);
         updateProfile(user, { photoURL: image.URL })
             .then(() => {
                 // Update successful.

@@ -33,9 +33,6 @@ const TrailerMovie = ({ movieID }) => {
             .catch((err) => console.log(err));
     }, []);
 
-    console.log(typeof Dimensions.get("window").width);
-    const width = Dimensions.get("window").width;
-    const height = Dimensions.get("window").height;
 
     return (
         <View className="flex items-center justify-center h-full w-full">

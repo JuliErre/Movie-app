@@ -35,7 +35,8 @@ const CarouselPosters = ({ movies, width, height }) => {
                     <View
                         className={`flex flex-row items-center justify-start w-[320px] gap-10`}
                     >
-                        <Text className="text-4xl font-semibold text-white">
+                        <Text className="text-4xl font-semibold text-white"
+                        numberOfLines={2}>
                             {item.title}
                         </Text>
                         <MaterialIcons

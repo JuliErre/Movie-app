@@ -34,7 +34,6 @@ const LoginContainer = ({ email, password }) => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const { user } = userCredential;
-                console.log(user);
 
                 dispatch(setAccesToken(user.accessToken));
                 dispatch(setUserInfo(user.providerData[0]));

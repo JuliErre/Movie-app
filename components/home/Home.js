@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Row from "../movies/Row";
 import ApiUrls from "../../ApiUrls";
-import CarouselPosters from "../components/movies/CarouselPosters";
+import CarouselPosters from "../movies/CarouselPosters";
 
 const Home = () => {
     const [data, setData] = useState();

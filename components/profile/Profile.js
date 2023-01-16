@@ -10,7 +10,6 @@ const Profile = () => {
     const userInfo = useSelector((state) => state.userInfo);
     const { displayName, email, phoneNumber, photoURL, providerId } =
         userInfo.userInfo;
-    console.log(photoURL);
 
     const navigation = useNavigation();
 

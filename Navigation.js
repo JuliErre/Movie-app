@@ -15,7 +15,7 @@ const Tab = createBottomTabNavigator();
 const Navigation = () => {
     const user = useSelector((state) => state.userInfo);
     const { photoURL } = user.userInfo;
-    console.log("je" + photoURL);
+
     return (
         <Tab.Navigator
             screenOptions={{

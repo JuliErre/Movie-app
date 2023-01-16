@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     ToastAndroid,
     Linking,
+    ActivityIndicator,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -22,6 +23,7 @@ import WatchProviders from "../movies/WatchProviders";
 import MoviesList from "../movies/MoviesList";
 import { Entypo } from "@expo/vector-icons";
 import { addMovieToWatchList, removeMovieFromList } from "../../firebase/api";
+import{API_KEY, API_URL} from "@env";
 
 const DetailContainer = ({ movieID, media, navigation }) => {
     const baseUrlImages = "https://image.tmdb.org/t/p/original";
@@ -38,7 +40,7 @@ const DetailContainer = ({ movieID, media, navigation }) => {
     useEffect(() => {
         axios
             .get(
-                `https://api.themoviedb.org/3/${media}/${movieID}?api_key=771f03b9c3d4bcaf131e7e4859fdb6f0&language=en-US`
+                `${API_URL}/${media}/${movieID}?api_key=${API_KEY}&language=en-US`
             )
             .then((res) => {
                 setMovie(res.data);
@@ -47,7 +49,7 @@ const DetailContainer = ({ movieID, media, navigation }) => {
 
         axios
             .get(
-                `https://api.themoviedb.org/3/${media}/${movieID}/credits?api_key=771f03b9c3d4bcaf131e7e4859fdb6f0&language=en-US`
+                `${API_URL}/${media}/${movieID}/credits?api_key=${API_KEY}&language=en-US`
             )
             .then((res) => {
                 setCast(res.data.cast.slice(0, 12));
@@ -56,7 +58,7 @@ const DetailContainer = ({ movieID, media, navigation }) => {
 
         axios
             .get(
-                `https://api.themoviedb.org/3/${media}/${movieID}/recommendations?api_key=771f03b9c3d4bcaf131e7e4859fdb6f0&language=en-US`
+                `${API_URL}/${media}/${movieID}/recommendations?api_key=${API_KEY}&language=en-US`
             )
             .then((res) => {
                 setRecommendations(res.data.results);
@@ -65,7 +67,7 @@ const DetailContainer = ({ movieID, media, navigation }) => {
 
         axios
             .get(
-                `https://api.themoviedb.org/3/${media}/${movieID}/videos?api_key=771f03b9c3d4bcaf131e7e4859fdb6f0&language=en-US`
+                `${API_URL}/${media}/${movieID}/videos?api_key=${API_KEY}&language=en-US`
             )
             .then((res) => {
                 setTrailer(
@@ -83,7 +85,6 @@ const DetailContainer = ({ movieID, media, navigation }) => {
         if (action === "add") {
             dispatch(addToList({ ...movie, media: media }));
             if (userId) {
-                console.log("user ", userId);
                 addMovieToWatchList(userId, { ...movie, media: media })
                     .then(() => {
                         console.log("Movie added to watchlist");
@@ -107,7 +108,7 @@ const DetailContainer = ({ movieID, media, navigation }) => {
     };
 
     return (
-        <ScrollView className="flex flex-col relative ">
+        <ScrollView className="flex flex-col">
             <View className="flex relative">
                 <Image
                     source={{ uri: `${baseUrlImages}${movie.backdrop_path}` }}

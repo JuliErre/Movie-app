@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Easing } from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
@@ -13,9 +13,37 @@ import ProfileImagePickerScreen from "./screens/ProfileImagePickerScreen";
 
 const Stack = createNativeStackNavigator();
 
+const config = {
+
+    animation: "spring",
+    config: {
+        stiffness: 1000,
+        damping: 50,
+        mass: 3,
+
+        overshootClamping: true,
+        restDisplacementThreshold: 0.01,
+        restSpeedThreshold: 0.01,
+    },
+}
+
+const closeConfig = {
+    animation: "timing",
+    config: {
+        duration: 500,
+        easing: Easing.linear,
+    },
+}
 const HomeNavigatior = () => {
     return (
-        <Stack.Navigator initialRouteName="HomeScreen">
+        <Stack.Navigator initialRouteName="HomeScreen"
+        options={{
+            gestureEnabled:true,
+            transitionSpec: {
+                open: config,
+                close: closeConfig,
+            },
+        }}>
             <Stack.Screen
                 name="HomeScreen"
                 component={HomeScreen}
