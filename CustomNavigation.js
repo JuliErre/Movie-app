@@ -4,7 +4,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
 import DetailScreen from "./screens/DetailScreen";
 import SearchScreen from "./screens/SearchScreen";
-import TrailerScreen from "./screens/TrailerScreen";
 import WatchListScreen from "./screens/WatchListScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
@@ -52,11 +51,6 @@ const HomeNavigatior = () => {
             <Stack.Screen
                 name="Detail"
                 component={DetailScreen}
-                options={{ headerShown: false }}
-            />
-            <Stack.Screen
-                name="Trailer"
-                component={TrailerScreen}
                 options={{ headerShown: false }}
             />
         </Stack.Navigator>

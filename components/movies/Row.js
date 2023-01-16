@@ -2,16 +2,12 @@ import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import MoviesList from "./MoviesList";
 import axios from "axios";
+import { useFetch } from "../../hooks/useFetch";
 
 const Row = ({ title, category, baseUrl, isFirstRow, isTV }) => {
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        axios
-            .get(`${baseUrl}${category}`)
-            .then((res) => setData(res.data.results))
-            .catch((err) => console.log(err));
-    }, []);
+    const {data} = useFetch(`${baseUrl}${category}`);
+    const {results:movies} =  data;
+    
 
     return (
         <View
@@ -20,7 +16,7 @@ const Row = ({ title, category, baseUrl, isFirstRow, isTV }) => {
             }`}>
             <Text className="text-white text-2xl font-bold ">{title}</Text>
 
-            <MoviesList data={data} isTV={isTV} />
+            <MoviesList data={movies} isTV={isTV} />
         </View>
     );
 };
