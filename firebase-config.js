@@ -8,9 +8,9 @@
 // // Your web app's Firebase configuration
 // // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
-
+import {FIREBASE_API_KEY} from '@env';
 export const firebaseConfig = {
-    apiKey: "AIzaSyDpKFfSmuwbBqJrun_bfNgF0Omt_25ynaY",
+    apiKey: FIREBASE_API_KEY,
     authDomain: "movie-app-1787f.firebaseapp.com",
     projectId: "movie-app-1787f",
     storageBucket: "movie-app-1787f.appspot.com",

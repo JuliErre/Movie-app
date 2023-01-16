@@ -9,8 +9,7 @@ import {
     Linking,
     ActivityIndicator,
 } from "react-native";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react"
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
@@ -23,63 +22,30 @@ import WatchProviders from "../movies/WatchProviders";
 import MoviesList from "../movies/MoviesList";
 import { Entypo } from "@expo/vector-icons";
 import { addMovieToWatchList, removeMovieFromList } from "../../firebase/api";
-import{API_KEY, API_URL} from "@env";
+import { API_KEY, API_URL } from "@env";
+import { useFetch} from "../../hooks/useFetch";
 
 const DetailContainer = ({ movieID, media, navigation }) => {
     const baseUrlImages = "https://image.tmdb.org/t/p/original";
-    const [movie, setMovie] = useState({});
-    const [cast, setCast] = useState([]);
-    const [recommendations, setRecommendations] = useState([]);
-    const [trailer, setTrailer] = useState({});
+    const baseUrl = `${API_URL}/${media}/${movieID}`
 
     const dispatch = useDispatch();
-    const watchList = useSelector((state) => state.watchList);
+    const watchList = useSelector((state) => state.watchList); 
 
     const userId = useSelector((state) => state.userInfo.uid);
 
-    useEffect(() => {
-        axios
-            .get(
-                `${API_URL}/${media}/${movieID}?api_key=${API_KEY}&language=en-US`
-            )
-            .then((res) => {
-                setMovie(res.data);
-            })
-            .catch((err) => console.log(err));
+    const {data:movie,loading} = useFetch(`${baseUrl}?api_key=${API_KEY}&language=en-US`);
 
-        axios
-            .get(
-                `${API_URL}/${media}/${movieID}/credits?api_key=${API_KEY}&language=en-US`
-            )
-            .then((res) => {
-                setCast(res.data.cast.slice(0, 12));
-            })
-            .catch((err) => console.log(err));
+    const {data:castData,loading:castLoading} = useFetch(`${baseUrl}/credits?api_key=${API_KEY}&language=en-US`);
+    const {cast} = castData;
 
-        axios
-            .get(
-                `${API_URL}/${media}/${movieID}/recommendations?api_key=${API_KEY}&language=en-US`
-            )
-            .then((res) => {
-                setRecommendations(res.data.results);
-            })
-            .catch((err) => console.log(err));
+    const {data:recommendationsData,loading:recommendationsLoading} = useFetch(`${baseUrl}/recommendations?api_key=${API_KEY}&language=en-US`);
+    const {results:recommendations} = recommendationsData;
 
-        axios
-            .get(
-                `${API_URL}/${media}/${movieID}/videos?api_key=${API_KEY}&language=en-US`
-            )
-            .then((res) => {
-                setTrailer(
-                    res.data.results.find(
-                        (trailer) =>
-                            trailer.type === "Trailer" &&
-                            trailer.site === "YouTube"
-                    )
-                );
-            })
-            .catch((err) => console.log(err));
-    }, []);
+    const {data:trailerData,loading:trailerLoading} = useFetch(`${baseUrl}/videos?api_key=${API_KEY}&language=en-US`);
+    const {results:trailers} = trailerData;
+    const trailer = trailers?.find((trailer) => trailer.type === "Trailer" && trailer.site === "YouTube");
+
 
     const handleOnPress = (action) => {
         if (action === "add") {

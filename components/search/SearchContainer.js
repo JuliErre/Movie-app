@@ -4,21 +4,21 @@ import axios from "axios";
 import MoviesList from "../movies/MoviesList";
 import { FontAwesome } from "@expo/vector-icons";
 import Constants from "expo-constants";
+import ApiUrls from "../../ApiUrls";
 
 const SearchContainer = ({ navigation }) => {
-    const ApiKey = "?api_key=771f03b9c3d4bcaf131e7e4859fdb6f0";
     const [search, setSearch] = useState("");
     const [movies, setMovies] = useState([]);
-
+    
     useEffect(() => {
         let isUnmounted = false;
         axios
             .get(
-                `https://api.themoviedb.org/3/search/multi${ApiKey}&language=en-US&query=${search}&page=1&include_adult=false`
+                `${ApiUrls.baseUrl}${ApiUrls.searchMovie}${search}&page=1&include_adult=false`
             )
             .then((res) => {
                 if (!isUnmounted) {
-                    setMovies(res.data.results);
+                    setMovies(res.data.results.filter((movie) => movie.poster_path)) 
                 }
             })
             .catch((e) => console.log(e));
