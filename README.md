@@ -29,7 +29,7 @@ To deploy this project run
 
 ## Screenshots
 
-![](https://i.ibb.co/mBLzr61/Whats-App-Image-2023-01-17-at-17-52-28.jpg)
+![](https://i.ibb.co/zQc19f6/Whats-App-Image-2023-01-17-at-18-19-36.jpg)
 
 ![](https://i.ibb.co/zFjsT5h/Whats-App-Image-2023-01-17-at-17-53-16.jpg)
 
