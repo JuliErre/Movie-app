@@ -11,6 +11,8 @@ const Profile = () => {
     const { displayName, email, phoneNumber, photoURL, providerId } =
         userInfo.userInfo;
 
+    const name = displayName?.split(" ")[0];    
+
     const navigation = useNavigation();
 
     return (
@@ -40,7 +42,7 @@ const Profile = () => {
                 </View>
             </TouchableOpacity>
             <Text className="text-2xl text-gray-300 font-bold">
-                Hi, {displayName}
+                Hi, {name}
             </Text>
             <LogoutBtn />
         </View>

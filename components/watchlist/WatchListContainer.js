@@ -1,11 +1,20 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { View, Text, ActivityIndicator } from "react-native";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import MoviesList from "../movies/MoviesList";
 import Constants from "expo-constants";
+import { useState } from "react";
 
 const WatchListContainer = () => {
+    const [loading, setLoading] = useState(true)
     const watchList = useSelector((state) => state.watchList);
+
+    useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        },400)
+    }, [watchList]);
 
     return (
         <View
@@ -19,7 +28,10 @@ const WatchListContainer = () => {
                     No movies in watchlist
                 </Text>
             )}
+            {loading ? <ActivityIndicator color="purple" size="large" />
+            :
             <MoviesList data={watchList} isVertical />
+            }
         </View>
     );
 };

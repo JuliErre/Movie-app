@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "app2",
-    "slug": "app2",
+    "name": "movieapp",
+    "slug": "movieapp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/movie-app.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/movie-app-icon_foreground.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#24282f"
     },
     "androidStatusBar": {
       "translucent": true

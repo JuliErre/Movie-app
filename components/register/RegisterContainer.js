@@ -10,12 +10,42 @@ import {
 import { initializeApp } from "@firebase/app";
 import { useNavigation } from "@react-navigation/native";
 import { addWatchList } from "../../firebase/api";
+import { useEffect, useState } from "react";
 
 const RegisterContainer = ({ email, password, name, surname }) => {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const [disabled, setDisabled] = useState(true);
 
     const navigation = useNavigation();
+
+    const handleDisabled = () => {
+        if (email && password && name && surname) {
+            if (password.length < 6) {
+                setDisabled(true);
+                return;
+            }
+            if (name.length < 3) {
+                setDisabled(true);
+                return;
+            }
+            if (surname.length < 3) {
+                setDisabled(true);
+                return;
+            }
+            if (email.length < 3) {
+                setDisabled(true);
+                return;
+            }
+            return setDisabled(false);
+        }
+
+        return setDisabled(true);
+    };
+
+    useEffect(() => {
+        handleDisabled();
+    }, [email, password, name, surname]);
 
     const handleCreateAccount = () => {
         createUserWithEmailAndPassword(auth, email, password)
@@ -34,7 +64,6 @@ const RegisterContainer = ({ email, password, name, surname }) => {
                     .catch((error) => {
                         console.log(error);
                     });
-                
             })
             .then(() => {
                 navigation.navigate("LoginScreen");
@@ -47,16 +76,17 @@ const RegisterContainer = ({ email, password, name, surname }) => {
         <View className="w-[45%] mt-4">
             <TouchableOpacity
                 onPress={() => handleCreateAccount()}
-                className="bg-purple-800 flex items-center justify-center p-3  rounded-xl"
-            >
+                disabled={disabled}
+                className={`bg-purple-800 flex items-center justify-center p-3  rounded-xl   ${
+                    disabled && "opacity-20"
+                }`}>
                 <Text className="text-white font-bold text-base">
                     Create Account
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => navigation.goBack()}
-                className="bg-gray-800 border-2 border-purple-800 col flex items-center justify-center p-3 rounded-xl mt-2"
-            >
+                className="bg-gray-800 border-2 border-purple-800 col flex items-center justify-center p-3 rounded-xl mt-2">
                 <Text className="text-white font-bold text-base">Login</Text>
             </TouchableOpacity>
         </View>

@@ -1,4 +1,11 @@
-import { View, Text, FlatList, Image, TouchableOpacity } from "react-native";
+import {
+    View,
+    Text,
+    FlatList,
+    Image,
+    TouchableOpacity,
+    ToastAndroid,
+} from "react-native";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { setProfileImage } from "../../features/userInfo/UserInfoSlice";
@@ -47,24 +54,24 @@ const ProfileImage = ({ image }) => {
             routes: [{ name: "Profile" }],
         });
         navigation.navigate("Profile");
-        setTimeout(() => {
-            Toast.show("Profile image updated", {
-                duration: Toast.durations.SHORT,
-                position: Toast.positions.BOTTOM,
-                shadow: true,
-                animation: true,
-                hideOnPress: true,
-                delay: 0,
-                backgroundColor: "green",
-            });
-        }, 1000);
+
+        Toast.show("Profile image updated", {
+            duration: Toast.durations.SHORT,
+            position: Toast.positions.BOTTOM,
+            shadow: true,
+            animation: true,
+            hideOnPress: true,
+            delay: 1000,
+            backgroundColor: "white",
+            opacity: 1,
+            textColor: "black",
+        });
     };
 
     return (
         <TouchableOpacity
             onPress={() => handlePress()}
-            className="mr-3 mt-6 rounded-full flex justify-center items-center border-solid border-2 border-zinc-400"
-        >
+            className="mr-3 mt-6 rounded-full flex justify-center items-center border-solid border-2 border-zinc-400">
             <Image
                 className="h-20 w-20 rounded-full "
                 source={{ uri: image.URL }}
