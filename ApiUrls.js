@@ -1,22 +1,20 @@
 import React from "react";
-const ApiKey = 'api_key=771f03b9c3d4bcaf131e7e4859fdb6f0';
+import{API_KEY, API_URL} from "@env";
 
-const  ApiUrls = {
-    
-     baseUrl: 'https://api.themoviedb.org/3',
-     popularsMovies: `/discover/movie?sort_by=popularity.desc&${ApiKey}`,
-     horrorMovies: `/discover/movie?${ApiKey}&with_genres=27`,
-     actionMovies: `/discover/movie?${ApiKey}&with_genres=28`,
-     comedyMovies: `/discover/movie?${ApiKey}&with_genres=35`,
-     romanceMovies: `/discover/movie?${ApiKey}&with_genres=10749`,
-     familyMovies: `/discover/movie?${ApiKey}&with_genres=10751`,
-     dramaMovies: `/discover/movie?${ApiKey}&with_genres=18`,
-     searchMovie : `/search/movie?${ApiKey}&query=`,
-     popularsTV : `/tv/popular?${ApiKey}`,
-     topRatedTV : `/tv/top_rated?${ApiKey}`,
-     getProviders : `/watch/providers?${ApiKey}`,
+const ApiUrls = {
+    baseUrl: API_URL,
+    popularsMovies: `/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}`,
+    horrorMovies: `/discover/movie?api_key=${API_KEY}&with_genres=27`,
+    actionMovies: `/discover/movie?api_key=${API_KEY}&with_genres=28`,
+    comedyMovies: `/discover/movie?api_key=${API_KEY}&with_genres=35`,
+    romanceMovies: `/discover/movie?api_key=${API_KEY}&with_genres=10749`,
+    familyMovies: `/discover/movie?api_key=${API_KEY}&with_genres=10751`,
+    dramaMovies: `/discover/movie?api_key=${API_KEY}&with_genres=18`,
+    searchMovie: `/search/multi/?api_key=${API_KEY}&language=en-US&query=`,
+    popularsTV: `/tv/popular?api_key=${API_KEY}`,
+    topRatedTV: `/tv/top_rated?api_key=${API_KEY}`,
+    getProviders: `/watch/providers?api_key=${API_KEY}`,
+    // `https://api.themoviedb.org/3/search/multi${ApiKey}&language=en-US&query=${search}&page=1&include_adult=false`
+};
 
-    
-}
-
-export default ApiUrls
+export default ApiUrls;
