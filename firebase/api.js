@@ -30,8 +30,9 @@ export const addMovieToWatchList = (uid, movie) => {
     });
 };
 
-export const removeMovieFromList = (uid, movie) => {
+export const removeMovieFromList = (uid, watchList, movieID) => {
+    const newWatchList = watchList.filter((movie) => movie.id !== movieID);
     return updateDoc(doc(db, "watchlists", uid), {
-        movies: arrayRemove(movie),
+        movies: newWatchList,
     });
 };

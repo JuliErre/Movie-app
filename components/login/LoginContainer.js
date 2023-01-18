@@ -41,6 +41,7 @@ const LoginContainer = ({ email, password }) => {
 
                 getUserWatchList(user.uid).then((watchlist) => {
                     dispatch(initWatchList(watchlist.data().movies));
+                    console.log(watchlist.data().movies);
                 });
             })
             .then(() => {
