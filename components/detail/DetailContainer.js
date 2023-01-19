@@ -9,7 +9,7 @@ import {
     Linking,
     ActivityIndicator,
 } from "react-native";
-import React from "react"
+import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
@@ -23,29 +23,39 @@ import MoviesList from "../movies/MoviesList";
 import { Entypo } from "@expo/vector-icons";
 import { addMovieToWatchList, removeMovieFromList } from "../../firebase/api";
 import { API_KEY, API_URL } from "@env";
-import { useFetch} from "../../hooks/useFetch";
+import { useFetch } from "../../hooks/useFetch";
 
 const DetailContainer = ({ movieID, media, navigation }) => {
     const baseUrlImages = "https://image.tmdb.org/t/p/original";
-    const baseUrl = `${API_URL}/${media}/${movieID}`
+    const baseUrl = `${API_URL}/${media}/${movieID}`;
 
     const dispatch = useDispatch();
-    const watchList = useSelector((state) => state.watchList); 
+    const watchList = useSelector((state) => state.watchList);
 
     const userId = useSelector((state) => state.userInfo.uid);
 
-    const {data:movie,loading} = useFetch(`${baseUrl}?api_key=${API_KEY}&language=en-US`);
+    const { data: movie, loading } = useFetch(
+        `${baseUrl}?api_key=${API_KEY}&language=en-US`
+    );
 
-    const {data:castData,loading:castLoading} = useFetch(`${baseUrl}/credits?api_key=${API_KEY}&language=en-US`);
-    const {cast} = castData;
+    const { data: castData, loading: castLoading } = useFetch(
+        `${baseUrl}/credits?api_key=${API_KEY}&language=en-US`
+    );
+    const { cast } = castData;
 
-    const {data:recommendationsData,loading:recommendationsLoading} = useFetch(`${baseUrl}/recommendations?api_key=${API_KEY}&language=en-US`);
-    const {results:recommendations} = recommendationsData;
+    const { data: recommendationsData, loading: recommendationsLoading } =
+        useFetch(
+            `${baseUrl}/recommendations?api_key=${API_KEY}&language=en-US`
+        );
+    const { results: recommendations } = recommendationsData;
 
-    const {data:trailerData,loading:trailerLoading} = useFetch(`${baseUrl}/videos?api_key=${API_KEY}&language=en-US`);
-    const {results:trailers} = trailerData;
-    const trailer = trailers?.find((trailer) => trailer.type === "Trailer" && trailer.site === "YouTube");
-
+    const { data: trailerData, loading: trailerLoading } = useFetch(
+        `${baseUrl}/videos?api_key=${API_KEY}&language=en-US`
+    );
+    const { results: trailers } = trailerData;
+    const trailer = trailers?.find(
+        (trailer) => trailer.type === "Trailer" && trailer.site === "YouTube"
+    );
 
     const handleOnPress = (action) => {
         if (action === "add") {
@@ -62,7 +72,7 @@ const DetailContainer = ({ movieID, media, navigation }) => {
         if (action === "delete") {
             dispatch(deleteFromList(movie.id));
             if (userId) {
-                removeMovieFromList(userId, { ...movie, media: media })
+                removeMovieFromList(userId, watchList, movie.id)
                     .then(() => {
                         console.log("Movie removed from watchlist");
                     })
